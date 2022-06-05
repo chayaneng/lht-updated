@@ -1,0 +1,51 @@
+service: aws-node-project
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-2
+
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "s3:PutObject"
+            - "s3:GetObject"
+          Resource:
+            - "arn:aws:s3:::lighthouse-s3-bucket"
+            - "arn:aws:s3:::lighthouse-s3-bucket/*"
+        - Effect: Allow
+          Action: 's3:ListBucket'
+          Resource: '*'
+
+layers:
+  lighthouse:
+    path: ./layer
+    description: Layer with all the required dependencies to run google lighthouse
+    compatibleRuntimes:
+      - nodejs14.x
+    licenseInfo: MIT
+    retain: true
+
+package:
+  individually: true
+
+functions:
+  hello:
+    handler: hello.handler
+    layers:
+      - arn:aws:lambda:us-west-2:930191050201:layer:lighthouse:6
+    events:
+      - http:
+          path: /
+          method: get
+
+  postRequest:
+    handler: postrequest.handler
+    events:
+      - http:
+          path: /post-request
+          method: post

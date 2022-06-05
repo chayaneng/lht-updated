@@ -1,0 +1,19 @@
+{
+  "name": "lighthouse-layer",
+  "private": true,
+  "version": "0.0.1",
+  "description": "A Lambda layer with all the required dependencies to run Google Lighthouse",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "remove": "serverless remove",
+    "postinstall": "cd layer/nodejs && yarn"
+  },
+  "author": "Erez Rokah",
+  "license": "MIT",
+  "homepage": "https://github.com/adieuadieu/erezrokah/lighthouse-runner/layers/lighthouse",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^2.0.0",
+    "tar-fs": "^2.0.0"
+  }
+}
