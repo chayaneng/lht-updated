@@ -65,6 +65,11 @@ const runLighthouse = async (data) => {
 
           response = {
             statusCode: 200,
+            headers: {
+              "Access-Control-Allow-Headers" : "Content-Type",
+              "Access-Control-Allow-Origin": "http://localhost:3000/seo-audit",
+              "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+            },
             body: JSON.stringify({
               file: fileUrl,
               message: 'File has been created!'

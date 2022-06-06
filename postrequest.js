@@ -2,8 +2,6 @@
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
 
-
-// utility function to run lighthouse
 const postRequest = async (event) => {
   const blob = 'hug-kiss-images.jpg';
 
